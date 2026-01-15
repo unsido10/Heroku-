@@ -15,7 +15,8 @@ ENV PYTHONUNBUFFERED=1 \
     DOCKER=true \
     GIT_PYTHON_REFRESH=quiet
 
-RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
+# Убрано только "apt-get upgrade -y", остальное как в твоем исходнике
+RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     curl \
     ffmpeg \
@@ -34,10 +35,12 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     python3-dev \
     python3-pip \
     wkhtmltopdf
+
 RUN curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
     apt-get install -y nodejs && \
     rm nodesource_setup.sh
+
 RUN rm -rf /var/lib/apt/lists/ /var/cache/apt/archives/ /tmp/*
 
 WORKDIR /data
