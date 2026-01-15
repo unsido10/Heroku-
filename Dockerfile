@@ -1,24 +1,14 @@
-FROM python:3.10 AS python-base
-FROM python-base AS builder-base
+FROM python:3.10
 
+# Настройки среды
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    \
-    PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    AIOHTTP_NO_EXTENSIONS=1 \
-    \
-    PYSETUP_PATH="/opt/pysetup" \
-    VENV_PATH="/opt/pysetup/.venv" \
-    \
     DOCKER=true \
     GIT_PYTHON_REFRESH=quiet
 
-# Исправляем репозитории и устанавливаем пакеты (БЕЗ upgrade, чтобы не было ошибки 100)
-RUN sed -i 's|http://deb.debian.org/debian|http://ftp.us.debian.org/debian|g' /etc/apt/sources.list && \
-    apt-get update --fix-missing && \
-    apt-get install --no-install-recommends -y \
+# Установка системных пакетов. 
+# Мы убрали 'sed' и 'upgrade'. Только чистая установка.
+RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     curl \
     ffmpeg \
@@ -37,24 +27,21 @@ RUN sed -i 's|http://deb.debian.org/debian|http://ftp.us.debian.org/debian|g' /e
     rm -rf /var/lib/apt/lists/*
 
 # Установка Node.js
-RUN curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh && \
-    bash nodesource_setup.sh && \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
-    rm nodesource_setup.sh
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /data
-RUN mkdir /data/private
 
-# Клонируем и настраиваем бота
+# Клонируем бота во временную папку и переносим содержимое
 RUN git clone https://github.com/coddrago/Heroku /data/Heroku
 WORKDIR /data/Heroku
-RUN git fetch && git checkout master && git pull
 
-# Устанавливаем зависимости Python
-RUN pip install --no-warn-script-location --no-cache-dir -U -r requirements.txt
+# Установка зависимостей самого юзербота
+RUN pip install --no-cache-dir -U -r requirements.txt
 
-# Порт для Render
+# Открываем порт
 EXPOSE 8080
 
-# Запуск бота
+# Команда запуска
 CMD ["python3", "-m", "heroku"]
