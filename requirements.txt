@@ -1,34 +1,48 @@
-# ОСНОВА (ТВОЯ)
+# --- ТВОЯ ОСНОВА (НЕ ТРОГАЕМ) ---
 Heroku-tl-new>=1.0.2
 Pillow
 gitpython
 aiohttp
 python-magic
 
-# СЕТЬ И СИСТЕМА
-pip
+# --- СИСТЕМНЫЕ И СЕТЕВЫЕ (ДЛЯ СТАБИЛЬНОСТИ) ---
 setuptools
 wheel
 certifi
 python-dotenv
 requests
-httpx
 yarl
 pydantic
 python-dateutil
 pyyaml
 psutil
+urllib3
+idna
+multidict
+async-timeout
 
-# МУЗЫКА И ТЕЛЕГРАМ (БЕЗ ТЯЖЕЛЫХ ЛИБ)
+# --- МЕДИА И МУЗЫКА (МАКСИМУМ СОВМЕСТИМОСТИ) ---
 imageio-ffmpeg
 yt-dlp
 pytube
-spotipy
 pydub
 tgcrypto
+hachoir
+mutagen
+ffmpy
 
-# НЕЙРОНКИ
+# --- НЕЙРОНКИ И ПОИСК ---
 google-generativeai
 openai
 g4f
 beautifulsoup4
+html5lib
+soupsieve
+
+# --- ВСПОМОГАТЕЛЬНЫЕ ---
+qrcode
+pybase64
+cryptography
+cachetools
+speedtest-cli
+colorama
