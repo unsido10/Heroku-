@@ -1,47 +1,21 @@
-FROM python:3.10
+FROM python:3.8-slim as python-base
+ENV DOCKER=true
+ENV GIT_PYTHON_REFRESH=quiet
 
-# Настройки среды
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    DOCKER=true \
-    GIT_PYTHON_REFRESH=quiet
+ENV PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
 
-# Установка системных пакетов. 
-# Мы убрали 'sed' и 'upgrade'. Только чистая установка.
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    build-essential \
-    curl \
-    ffmpeg \
-    gcc \
-    git \
-    libavcodec-dev \
-    libavdevice-dev \
-    libavformat-dev \
-    libavutil-dev \
-    libcairo2 \
-    libmagic1 \
-    libswscale-dev \
-    openssl \
-    wkhtmltopdf && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install libcairo2 git build-essential -y --no-install-recommends
+RUN rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp/*
 
-# Установка Node.js
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs && \
-    rm -rf /var/lib/apt/lists/*
+RUN mkdir /data
 
-WORKDIR /data
-
-# Клонируем бота во временную папку и переносим содержимое
-RUN git clone https://github.com/coddrago/Heroku /data/Heroku
+COPY . /data/Heroku
 WORKDIR /data/Heroku
 
-# Установка зависимостей самого юзербота
-RUN pip install --no-cache-dir -U -r requirements.txt
+RUN pip install --no-warn-script-location --no-cache-dir -U -r requirements.txt
 
-# Открываем порт
 EXPOSE 8080
 
-# Команда запуска
-CMD ["python3", "-m", "heroku"]
+CMD python -m heroku
