@@ -1,18 +1,18 @@
-# --- ТВОЯ БАЗА (ОБЯЗАТЕЛЬНО) ---
+# ОСНОВА
 Heroku-tl-new>=1.0.2
 Pillow
 gitpython
 aiohttp
 python-magic
 
-# --- ИНСТРУМЕНТЫ ДЛЯ ЗАГРУЗКИ ДРУГИХ ЗАВИСИМОСТЕЙ ---
+# ИНСТРУМЕНТЫ (БЕЗ ОШИБОК)
 pip
 setuptools
 wheel
-pkg_resources
-subprocess.run
+certifi
+python-dotenv
 
-# --- МУЗЫКА И МЕДИА (МАКСИМАЛЬНЫЙ НАБОР) ---
+# МЕДИА И МУЗЫКА
 imageio-ffmpeg
 yt-dlp
 pytube
@@ -21,41 +21,25 @@ pydub
 shazamio
 moviepy
 hachoir
-pytgcalls
-ntgcalls
-SoundFile
-librosa
 
-# --- НЕЙРОНКИ И ПОИСК ---
+# НЕЙРОНКИ (СТАБИЛЬНЫЕ ВЕРСИИ)
 google-generativeai
 openai
 g4f
-EdgeGPT
-googletrans==3.1.0a0
 beautifulsoup4
 lxml
 
-# --- СИСТЕМА И СКОРОСТЬ ---
-tgcrypto              # Ускоряет Telegram в 20 раз
+# СКОРОСТЬ И СИСТЕМА
+tgcrypto
 requests
 httpx
 yarl
-python-dotenv
 pydantic
 python-dateutil
 pyyaml
 cachetools
 psutil
-speedtest-cli
 
-# --- БАЗЫ ДАННЫХ (ЧТОБЫ НЕ СЛЕТАЛИ НАСТРОЙКИ) ---
+# БАЗЫ
 aiosqlite
 motor
-pymongo
-redis
-
-# --- ДОПОЛНИТЕЛЬНЫЕ ФИШКИ ---
-qrcode
-pybase64
-cryptography
-
