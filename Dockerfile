@@ -15,8 +15,10 @@ ENV PYTHONUNBUFFERED=1 \
     DOCKER=true \
     GIT_PYTHON_REFRESH=quiet
 
-# Убрано только "apt-get upgrade -y", остальное как в твоем исходнике
-RUN apt-get update && apt-get install --no-install-recommends -y \
+# Исправляем репозитории и устанавливаем пакеты (БЕЗ upgrade, чтобы не было ошибки 100)
+RUN sed -i 's|http://deb.debian.org/debian|http://ftp.us.debian.org/debian|g' /etc/apt/sources.list && \
+    apt-get update --fix-missing && \
+    apt-get install --no-install-recommends -y \
     build-essential \
     curl \
     ffmpeg \
@@ -30,27 +32,29 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libmagic1 \
     libswscale-dev \
     openssl \
-    openssh-server \
-    python3 \
-    python3-dev \
-    python3-pip \
-    wkhtmltopdf
+    wkhtmltopdf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
+# Установка Node.js
 RUN curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
     apt-get install -y nodejs && \
     rm nodesource_setup.sh
 
-RUN rm -rf /var/lib/apt/lists/ /var/cache/apt/archives/ /tmp/*
-
 WORKDIR /data
 RUN mkdir /data/private
 
+# Клонируем и настраиваем бота
 RUN git clone https://github.com/coddrago/Heroku /data/Heroku
 WORKDIR /data/Heroku
 RUN git fetch && git checkout master && git pull
 
+# Устанавливаем зависимости Python
 RUN pip install --no-warn-script-location --no-cache-dir -U -r requirements.txt
 
+# Порт для Render
 EXPOSE 8080
-CMD ["python", "-m", "heroku", "--root"]
+
+# Запуск бота
+CMD ["python3", "-m", "heroku"]
