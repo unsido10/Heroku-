@@ -1,45 +1,34 @@
-# ОСНОВА
+# ОСНОВА (ТВОЯ)
 Heroku-tl-new>=1.0.2
 Pillow
 gitpython
 aiohttp
 python-magic
 
-# ИНСТРУМЕНТЫ (БЕЗ ОШИБОК)
+# СЕТЬ И СИСТЕМА
 pip
 setuptools
 wheel
 certifi
 python-dotenv
-
-# МЕДИА И МУЗЫКА
-imageio-ffmpeg
-yt-dlp
-pytube
-spotipy
-pydub
-shazamio
-moviepy
-hachoir
-
-# НЕЙРОНКИ (СТАБИЛЬНЫЕ ВЕРСИИ)
-google-generativeai
-openai
-g4f
-beautifulsoup4
-lxml
-
-# СКОРОСТЬ И СИСТЕМА
-tgcrypto
 requests
 httpx
 yarl
 pydantic
 python-dateutil
 pyyaml
-cachetools
 psutil
 
-# БАЗЫ
-aiosqlite
-motor
+# МУЗЫКА И ТЕЛЕГРАМ (БЕЗ ТЯЖЕЛЫХ ЛИБ)
+imageio-ffmpeg
+yt-dlp
+pytube
+spotipy
+pydub
+tgcrypto
+
+# НЕЙРОНКИ
+google-generativeai
+openai
+g4f
+beautifulsoup4
