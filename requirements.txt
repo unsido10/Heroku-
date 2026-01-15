@@ -1,4 +1,7 @@
-heroku-tl-new==1.7.2
+telethon==1.24.0
 Pillow
-
-# Python 3.9+
+cryptg
+hachoir
+aiohttp
+multidict
+yarl
