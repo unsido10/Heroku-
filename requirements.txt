@@ -34,6 +34,7 @@ multidict
 async-timeout
 werkzeug
 ruamel.yaml
+aiohttp_jinja2
 
 # --- МЕДИА И МУЗЫКА (МАКСИМУМ СОВМЕСТИМОСТИ) ---
 imageio-ffmpeg
