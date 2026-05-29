@@ -32,6 +32,7 @@ urllib3
 idna
 multidict
 async-timeout
+werkzeug
 
 # --- МЕДИА И МУЗЫКА (МАКСИМУМ СОВМЕСТИМОСТИ) ---
 imageio-ffmpeg
