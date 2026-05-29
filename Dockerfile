@@ -1,4 +1,4 @@
-FROM python:3.10-slim as python-base
+FROM python:3.10-slim AS python-base
 ENV DOCKER=true
 ENV GIT_PYTHON_REFRESH=quiet
 
@@ -16,5 +16,5 @@ WORKDIR /data/Heroku
 
 RUN pip install --no-warn-script-location --no-cache-dir -U -r requirements.txt
 
-CMD python -m 
-heroku
+CMD python3 -m heroku --no-web 
+--root
