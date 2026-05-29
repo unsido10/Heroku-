@@ -16,4 +16,5 @@ WORKDIR /data/Heroku
 
 RUN pip install --no-warn-script-location --no-cache-dir -U -r requirements.txt
 
-CMD ["python3", "-m", "heroku", "--no-web", "--root"]
+# Обманка для Render: запускаем HTTP-сервер на выданном порту в фоне (&) и стартуем бота
+CMD python3 -m http.server $PORT & python3 -m heroku --no-web --root
