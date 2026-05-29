@@ -9,6 +9,17 @@ python-magic
 aiogram
 setuptools
 wheel
+# --- ТВОЯ ОСНОВА (НЕ ТРОГАЕМ) ---
+Heroku-tl-new>=1.0.2
+Pillow
+gitpython
+aiohttp
+python-magic
+
+# --- СИСТЕМНЫЕ И СЕТЕВЫЕ (ДЛЯ СТАБИЛЬНОСТИ) ---
+aiogram
+setuptools
+wheel
 certifi
 python-dotenv
 requests
@@ -49,9 +60,8 @@ cryptography
 cachetools
 speedtest-cli
 colorama
-penai
-g4f
-beautifulsoup4
+
+soup4
 html5lib
 soupsieve
 
