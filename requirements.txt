@@ -61,7 +61,6 @@ cachetools
 speedtest-cli
 colorama
 
-soup4
 html5lib
 soupsieve
 
