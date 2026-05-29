@@ -33,6 +33,7 @@ idna
 multidict
 async-timeout
 werkzeug
+ruamel.yaml
 
 # --- МЕДИА И МУЗЫКА (МАКСИМУМ СОВМЕСТИМОСТИ) ---
 imageio-ffmpeg
