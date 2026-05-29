@@ -41,6 +41,21 @@ html5lib
 soupsieve
 
 # --- ВСПОМОГАТЕЛЬНЫЕ ---
+grapheme
+emoji
+qrcode
+pybase64
+cryptography
+cachetools
+speedtest-cli
+colorama
+penai
+g4f
+beautifulsoup4
+html5lib
+soupsieve
+
+# --- ВСПОМОГАТЕЛЬНЫЕ ---
 emoji
 qrcode
 pybase64
