@@ -41,6 +41,7 @@ html5lib
 soupsieve
 
 # --- ВСПОМОГАТЕЛЬНЫЕ ---
+emoji
 qrcode
 pybase64
 cryptography
