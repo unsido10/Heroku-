@@ -6,6 +6,7 @@ aiohttp
 python-magic
 
 # --- СИСТЕМНЫЕ И СЕТЕВЫЕ (ДЛЯ СТАБИЛЬНОСТИ) ---
+aiogram
 setuptools
 wheel
 certifi
